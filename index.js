@@ -1,7 +1,35 @@
 const express = require('express');
 const app = express();
+const userRoutes = require('routes/userRoutes');
+require('dotenv').config(); // Load environment variables from .env file
+const mongoose = require('mongoose');
+function buildMongoURI({ username, password, host, dbName, options }) {
+    const encodedUsername = encodeURIComponent(username);
+    const encodedPassword = encodeURIComponent(password);
+    const defaultOptions = 'retryWrites=true&w=majority';   
+  
+    return `mongodb+srv://${encodedUsername}:${encodedPassword}@${host}/${dbName}?${options || defaultOptions}`;
+  }
+  const mongoURI = buildMongoURI({
+    username: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    host: process.env.DB_HOST,
+    dbName: process.env.DB_NAME,
+  });
+  
+  mongoose.connect(mongoURI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }).then(() => {
+    console.log('MongoDB connected!');
+  }).catch((err) => {
+    console.error('MongoDB connection error:', err);
+  });
 
 const PORT = process.env.PORT || 3000;
+
+// Middleware to parse JSON
+app.use(express.json());
 
 // Root route
 app.get('/', (req, res) => {
@@ -17,6 +45,10 @@ app.get('/about', (req, res) => {
 app.get('/api/message', (req, res) => {
   res.json({ message: 'Hello from the API!' });
 });
+
+// Use user routes
+app.use('/api/users', userRoutes);
+
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
