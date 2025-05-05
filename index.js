@@ -17,14 +17,10 @@ function buildMongoURI({ username, password, host, dbName, options }) {
     dbName: process.env.DB_NAME,
   });
   
-  mongoose.connect(mongoURI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  }).then(() => {
-    console.log('MongoDB connected!');
-  }).catch((err) => {
-    console.error('MongoDB connection error:', err);
-  });
+  mongoose.connect(mongoURI)
+  .then(() => console.log('MongoDB connected'))
+  .catch(err => console.error('MongoDB error:', err));
+
 
 const PORT = process.env.PORT || 3000;
 
