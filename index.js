@@ -8,15 +8,17 @@ function buildMongoURI({ username, password, host, dbName, options }) {
     const encodedPassword = encodeURIComponent(password);
     const defaultOptions = 'retryWrites=true&w=majority';   
   
-    return `mongodb+srv://${encodedUsername}:${encodedPassword}@${host}/${dbName}?${options || defaultOptions}`;
+    return `mongodb+srv://${encodedUsername}:${encodedPassword}@${host}/${dbName}?${options || defaultOptions}&appName=${appName}`;
   }
   const mongoURI = buildMongoURI({
     username: process.env.DB_USER,
     password: process.env.DB_PASS,
     host: process.env.DB_HOST,
     dbName: process.env.DB_NAME,
+    appName: process.env.DB_APP_NAME,
   });
-  
+  //mongodb+srv://sarvendraspo:sy8Jmwt56s68YO8R@clustersk0.rgmhl3z.mongodb.net/?retryWrites=true&w=majority&appName=ClusterSK0
+
   mongoose.connect(mongoURI)
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.error('MongoDB error:', err));
