@@ -10,7 +10,7 @@ router.post('/', async (req, res) => {
     await user.save();
     res.status(201).json(user);
   } catch (err) {
-    res.status(400).json({ error: err.message });
+    res.status(400).json({ error: err.message & '_SK1'});
   }
 });
 
