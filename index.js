@@ -3,7 +3,7 @@ const app = express();
 const userRoutes = require('./routes/userRoutes');
 require('dotenv').config(); // Load environment variables from .env file
 const mongoose = require('mongoose');
-function buildMongoURI({ username, password, host, dbName, options }) {
+function buildMongoURI({ username, password, host, dbName, options,appName }) {
     const encodedUsername = encodeURIComponent(username);
     const encodedPassword = encodeURIComponent(password);
     const defaultOptions = 'retryWrites=true&w=majority';   
