@@ -30,9 +30,9 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 
 // Root route
-app.get('/', (req, res) => {
+/*app.get('/', (req, res) => {
   res.send('Welcome to my Express app!');
-});
+});*/
 
 // About route
 app.get('/about', (req, res) => {
