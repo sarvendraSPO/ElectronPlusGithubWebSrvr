@@ -1,9 +1,9 @@
 const express = require('express');
 const app = express();
 const userRoutes = require('./routes/userRoutes');
-require('dotenv').config(); // Load environment variables from .env file
+//require('dotenv').config(); // Load environment variables from .env file
 const mongoose = require('mongoose');
-function buildMongoURI({ username, password, host, dbName, options,appName }) {
+/*function buildMongoURI({ username, password, host, dbName, options,appName }) {
     const encodedUsername = encodeURIComponent(username);
     const encodedPassword = encodeURIComponent(password);
     const defaultOptions = 'retryWrites=true&w=majority';   
@@ -16,9 +16,9 @@ function buildMongoURI({ username, password, host, dbName, options,appName }) {
     host: process.env.DB_HOST,
     dbName: process.env.DB_NAME,
     appName: process.env.DB_APP_NAME,
-  });
+  }); */
   //mongodb+srv://sarvendraspo:sy8Jmwt56s68YO8R@clustersk0.rgmhl3z.mongodb.net/?retryWrites=true&w=majority&appName=ClusterSK0
-
+ const mongoURI = `/mongodb+srv://sarvendraspo:sy8Jmwt56s68YO8R@clustersk0.rgmhl3z.mongodb.net/?retryWrites=true&w=majority&appName=ClusterSK0`;
   mongoose.connect(mongoURI)
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.error('MongoDB error:', err));
