@@ -18,7 +18,7 @@ const mongoose = require('mongoose');
     appName: process.env.DB_APP_NAME,
   }); */
   //mongodb+srv://sarvendraspo:sy8Jmwt56s68YO8R@clustersk0.rgmhl3z.mongodb.net/?retryWrites=true&w=majority&appName=ClusterSK0
- const mongoURI = `/mongodb+srv://sarvendraspo:sy8Jmwt56s68YO8R@clustersk0.rgmhl3z.mongodb.net/?retryWrites=true&w=majority&appName=ClusterSK0`;
+ const mongoURI = `mongodb+srv://sarvendraspo:sy8Jmwt56s68YO8R@clustersk0.rgmhl3z.mongodb.net/?retryWrites=true&w=majority&appName=ClusterSK0`;
   mongoose.connect(mongoURI)
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.error('MongoDB error:', err));
